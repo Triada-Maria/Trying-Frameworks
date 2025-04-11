@@ -37,8 +37,7 @@
         <h1>This is the ACM website</h1>
         <h2>This is the homepage</h2>
         <h3>Click on "Events"</h3>
-        <h4>This is Triada's branch</h4>
-
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
         <script src="/js/app.js"></script>  
 
