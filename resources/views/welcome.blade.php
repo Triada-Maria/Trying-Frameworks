@@ -11,7 +11,7 @@
     <body>
 
         <!--Navigation Bar-->
-        <nav class="navbar navbar-expand-lg my_navbar">
+        <nav class="navbar navbar-expand-lg navbar-acm">
             <div class="container-fluid">
                 <a class="navbar-brand" href="https://www.instagram.com/acmauth" target="_blank">
                     <img src="{{ asset('images/LogoACM.png') }}" alt="Logo" height="50" class="brand-logo me-2">
