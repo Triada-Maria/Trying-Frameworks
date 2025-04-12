@@ -1,4 +1,5 @@
 <template>
+
     <!-- Future Events Section -->
     <div class="future-events mt-5">
         <h2>Future Events</h2>
@@ -21,6 +22,11 @@
                 />
             </div>
         </div>
+
+    <div class="text-center">
+        <h1>Recent Events</h1>
+        <p>Here is a list of events...</p>
+
     </div>
 
     <!-- Modal for Event Details -->
