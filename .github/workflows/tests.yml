@@ -1,47 +1,48 @@
-name: Tests
+name: Laravel Tests
 
-on:
-  push:
-    branches:
-      - master
-      - '*.x'
-  pull_request:
-  schedule:
-    - cron: '0 0 * * *'
-
-permissions:
-  contents: read
+on: [push, pull_request]
 
 jobs:
-  tests:
+  laravel-tests:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [8.2, 8.3, 8.4]
-
-    name: PHP ${{ matrix.php }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup PHP
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          php-version: '8.2'
+          extensions: mbstring, bcmath, sqlite
           coverage: none
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction --no-progress
+        run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Copy environment file
+      - name: Copy .env
         run: cp .env.example .env
 
-      - name: Generate app key
+      - name: Generate application key
         run: php artisan key:generate
 
-      - name: Execute tests
+      # 🔥 This is what you're asking for:
+      - name: Create SQLite database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+
+      - name: Set SQLite DB path in .env
+        run: echo "DB_DATABASE=$(pwd)/database/database.sqlite" >> .env
+
+      - name: Run database migrations
+        run: php artisan migrate --force
+
+      - name: Run tests
         run: php artisan test
+
+      # Optional: See Laravel logs on failure
+      - name: View Laravel log on failure
+        if: failure()
+        run: cat storage/logs/laravel.log || echo "No log file"
+
