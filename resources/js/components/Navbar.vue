@@ -1,6 +1,6 @@
 <!--Navbar.vue-->
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-navbar">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <a class="navbar-brand d-flex align-items-center gap-2 text-dark" href="https://www.instagram.com/acmauth" target="_blank">
                 <img :src="logo" alt="Logo" height="50" class="brand-logo me-2" />
@@ -28,25 +28,33 @@ const logo = '/images/LogoACM.png';
 </script>
 
 <style scoped>
+/* Sticky Navbar */
+.sticky-navbar {
+    position: sticky; /* Make the navbar sticky */
+    top: 0; /* Stick to the top of the viewport */
+    z-index: 1000; /* Ensure it stays above other elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+}
+
 /* Keep the navbar background blue */
 .navbar-dark.bg-primary {
     background: linear-gradient(45deg, #0069bf, #03a5fc); /* Blue gradient */
 }
 
-/* Change text color to black */
+/* Change text color to white */
 .navbar-brand {
-    color: #000000 !important; /* Black text for the brand */
-    font-size: 1.5rem;
-    font-weight: bold;
+    color: #ffffff !important; /* Keep the text color white */
+    font-size: 2rem; /* Increase the font size */
+    font-weight: 300; /* Make the text thinner */
     transition: transform 0.3s ease;
 }
 
 .navbar-brand:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .nav-link {
-    color: #000000 !important; /* Black text for links */
+    color: #ffffff !important; /* Change the link text color to white */
     font-size: 1.5rem;
     transition: transform 0.3s ease, text-decoration 0.3s ease;
 }
@@ -58,7 +66,7 @@ const logo = '/images/LogoACM.png';
 
 .nav-link.active {
     text-decoration: underline;
-    color: #000000 !important; /* Ensure active link is also black */
+    color: #ffffff !important; /* Ensure active link is also white */
 }
 
 .brand-logo {
